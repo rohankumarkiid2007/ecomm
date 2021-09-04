@@ -1,0 +1,71 @@
+{% extends 'comm/base.html' %}
+{% block content %}
+{% load static %}
+<head>
+	<meta charset="utf-8">
+	<title>Profile - {{ user.get_username }}</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+<!-- 
+Easy Profile Template
+http://www.templatemo.com/tm-467-easy-profile
+-->
+<!-- stylesheet css -->
+    <link rel="stylesheet" href="{% static 'comm/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static 'comm/css/font-awesome.min.css' %}">
+	<link rel="stylesheet" href="{% static 'comm/css/templatemo-green.css' %}">
+</head>
+
+<body data-spy="scroll" data-target=".navbar-collapse">
+
+    <!-- preloader section -->
+    <div class="preloader">
+        <div class="sk-spinner sk-spinner-wordpress">
+           <span class="sk-inner-circle"></span>
+         </div>
+    </div>
+    
+    <!-- header section -->
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <img src="images/tm-easy-profile.jpg" class="img-responsive img-circle tm-border" alt="templatemo easy profile">
+                    <hr>
+                    <h1 class="tm-title bold shadow">{{ user.get_username }}</h1>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- about and skills section -->
+
+    {% for i in list_of_posted_products %}
+    <div class="card" style="width: 18rem;">
+        <img src="{{ i.picture.url }}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{ i.title }}</h5>
+          <p class="card-text">{{ i.description }}</p>
+          <a href="#" class="btn btn-primary">Watch Activity</a>
+        </div>
+    </div>
+    {% endfor %}
+    <div class="card" style="width: 18rem;">
+        <img src="{% static 'comm/img/check.png' %}" class="card-img-top">
+        <div class="card-body">
+          <h5 class="card-title">Add A Product</h5>
+          <p class="card-text">Add product description</p>
+          <a href="{% url 'comm:addproduct' %}" class="btn btn-primary">Add product</a>
+        </div>
+    </div>
+    
+    
+    <!-- javascript js -->	
+    <script src="{% static 'comm/js/jquery.js' %}"></script>
+    <script src="{% static 'comm/js/bootstrap.min.js' %}"></script>	
+    <script src="{% static 'comm/js/jquery.backstretch.min.js' %}"></script>
+    <script src="{% static 'comm/js/custom.js' %}"></script>
+    
+{% endblock %}

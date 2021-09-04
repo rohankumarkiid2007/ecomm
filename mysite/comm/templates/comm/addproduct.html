@@ -1,0 +1,10 @@
+{% extends 'comm/base.html' %}
+{% block content %}
+<form action="{% url 'comm:addproduct' %}" method="POST" enctype='multipart/form-data'>{% csrf_token %}
+    <div style="border: 5px solid #FFFF00;
+text-align: center;">
+        {{ form.as_p }}
+        <button type="submit">Add Product</button>
+    </div>
+</form>
+{% endblock %}
