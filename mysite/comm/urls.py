@@ -12,6 +12,8 @@ urlpatterns = [
     path('handleLogout', views.handleLogout, name='handleLogout'),
     path('profile', views.profile, name='profile'),
     path('addproduct', views.addproduct, name='addproduct'),
+    path('cart', views.cart, name='cart'),
+    path('productPage/<int:id>/', views.productPage, name='productPage'),
 ]
 
 if settings.DEBUG:

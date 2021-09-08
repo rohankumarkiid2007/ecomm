@@ -1,0 +1,18 @@
+{% extends 'comm/base.html' %}
+{% block content %}
+<style>
+    .center {
+    border: 5px solid #FFFF00;
+    text-align: center;
+    }</style>
+<div class="center">
+    <form action="{% url 'comm:cart' %}" method="POST">{% csrf_token %}
+        <img src="{{ product.picture.url }}" alt="" width="">
+        <h1>Title : {{ product.title }}</h1>
+        <h1>Price : {{ product.price }}</h1>
+        <h1>Description : {{ product.description }}</h1>
+        <input type="hidden" name="product" value="{{ product }}">
+        <button type="submit" class="btn btn-primary">Add to Cart</button>
+    </form>
+</div>
+{% endblock %}

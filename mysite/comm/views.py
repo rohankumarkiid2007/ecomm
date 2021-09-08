@@ -91,3 +91,33 @@ def addproduct(request):
             product.save()
             return redirect('/')
         return render(request, 'comm/login.html')
+
+def cart(request):
+    if request.method == 'GET':
+        if request.user.is_authenticated:
+            list_of_products = []
+            for i in models.Cart.objects.all():
+                if i.user == request.user:
+                    list_of_products.append(i)
+            context = {
+                'list_of_products':list_of_products
+            }
+            if len(list_of_products):
+                return render(request, 'comm/cart.html', list_of_products)
+            else:
+                return render(request, 'comm/cart.html')
+        else:
+            return redirect('/signup')
+    if request.method == 'POST':
+        product = request.POST.get('product')
+        cart = models.Cart(user=request.user)
+        product.cart = cart
+
+def productPage(request, id):
+    if request.method == 'GET':
+        product = models.Product.objects.get(id=id)
+        context = {
+            'product':product
+        }
+        return render(request, 'comm/product.html' , context=context)
+    

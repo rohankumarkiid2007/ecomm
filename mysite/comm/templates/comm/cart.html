@@ -1,5 +1,6 @@
 {% extends 'comm/base.html' %}
 {% block content %}
+{% if list_of_products_in_cart %}
 {% for i in list_of_products %}
 {% load static %}
 <div class="card" style="width: 18rem;">
@@ -7,8 +8,11 @@
     <div class="card-body">
       <h5 class="card-title">{{ i.title }}</h5>
       <p class="card-text">{{i.description}}</p>
-      <a href="productPage/{{i.id}}" type="submit"  class="btn btn-primary">$ {{i.price}}</a>
+      <a href="#" class="btn btn-primary">$ {{i.price}}</a>
     </div>
 </div>
 {% endfor %}
+{% else %}
+<h1>Your Cart Is Empty</h1>
+{% endif %}
 {% endblock %}
